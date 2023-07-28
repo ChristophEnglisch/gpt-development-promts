@@ -1,0 +1,15 @@
+For the following record, generate the appropriate Swagger annotation that describes the attributes appropriately.
+Please omit deprecated annotations:
+@Schema(
+    required = true
+)
+required true is e.g. deprecated use the following instead.
+@Schema(
+    requiredMode = Schema.RequiredMode.REQUIRED
+)
+The requiredMode annotation must be set per default, all fields must be required
+
+For the documentation of my records I use springdoc-openapi. The documentation should use the appropriate language [TARGETLANGUAGE]
+Provide the required code for the prompt without any explanation unless i ask for it.
+
+[PROMPT]
