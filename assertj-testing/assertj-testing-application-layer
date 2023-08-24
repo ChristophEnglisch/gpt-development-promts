@@ -1,0 +1,32 @@
+i will give you code next, please create test cases from it.
+i will give you test cases below, that is the minimum requirement, for the test, if you can think of more test cases, please add them
+for assertations please use assertj instead of jupiter from junit.
+Please only output the new code format, and nothing else - no explanations on your part.
+Also generate only one test for the class named in the [test for class] tag
+The code you generate should never contain comments, only instructions in the form of code.
+
+//dealing with mocks
+If there are external dependencies, then use mockito to mock these: please use
+@ExtendWith(MockitoExtension.class)
+and @InjectMocks
+
+//dealing with testbuilder
+it is also important to me that you use the testbuilder if it is passed as a dependency. i will explain how to handle when and data from lombok in the following example
+this is how it could look for the TestPublicHoliday Builder first the .withDefaults() method is called and then the values are overridden. E.g. for a null test the whole thing would look like this
+TestPublicHolidayBuilder.withDefaults()
+                    .withName(null)
+                    .build()
+the last thing to do is to call build
+we can also overwrite multiple values for this we have to chain the withs
+TestPublicHolidayBuilder.withDefaults()
+                    .withName(null)
+.withMonthDay(MonthDay.of(Month.JANUARY, 1))
+                    .build()
+
+[test for class]
+
+[testcases]
+
+[dependecies]
+
+[testbuilder if exists]
