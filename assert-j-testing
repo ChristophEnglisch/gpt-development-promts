@@ -1,0 +1,8 @@
+i will give you code next, please create test cases from it.
+for assertations please use assertj instead of jupiter from junit.
+Please only output the new code in markdown format, and nothing else - no explanations on your part.
+The code you generate should never contain comments, only instructions in the form of code.
+
+[testcases]
+
+[PROMPT]
