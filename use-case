@@ -1,0 +1,30 @@
+ich gebe dir gleich code und bitte dich passend zu dem Aggregate Root use case zu schreiben.
+Please only output the new code format, and nothing else - no explanations on your part.
+The code you generate should never contain comments, only instructions in the form of code.
+Bitte implementiere nur den UseCase für die [targetMethod].
+
+Ein UseCase soll mit folgendem Template gebaut werden
+
+@RequiredArgsConstructor
+@DrivingAdapter
+public class <name des usecases> {
+
+  private final <name des repositories passend zum aggregate root> repository;
+
+  public void <action>(<name des usecases>.Command command) {
+    durchführen der action
+  }
+
+  @Getter
+  @Builder
+  @AllArgsConstructor
+  @EqualsAndHashCode
+  public static class Command {
+    daten die für den usecase benötigt werden
+  }
+}
+
+[targetMethod]
+
+
+[ressources]
