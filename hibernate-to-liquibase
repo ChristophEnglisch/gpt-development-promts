@@ -1,0 +1,2 @@
+bitte generiere yml liquibase files zu den passenden hibernate entities, als author soll cenglisch eingetragen werden
+es sollen keine foreign keys eingetragen werden, die steuerung soll mit cascade soll über hibernate erfolgen
