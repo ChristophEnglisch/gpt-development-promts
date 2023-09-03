@@ -1,0 +1,54 @@
+erstelle mir bitte einen testbuilder nach folgendem Schema
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.With;
+
+import java.time.LocalDate;
+import java.util.Random;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@With
+public class TestAbsenceBuilder {
+
+  public static Random RANDOM = new Random();
+
+  private Long id;
+  private Long employeeId;
+  private LocalDate begin;
+  private LocalDate end;
+  private TypeOfAbsence typeOfAbsence;
+  private String comment;
+
+  public static TestAbsenceBuilder withDefaults() {
+    return new TestAbsenceBuilder()
+      .withId(RANDOM.nextLong(0, Integer.MAX_VALUE))
+      .withEmployeeId(RANDOM.nextLong(0, Integer.MAX_VALUE))
+      .withBegin(LocalDate.of(2023, 1, 1))
+      .withEnd(LocalDate.of(2023, 1, 2))
+      .withTypeOfAbsence(TypeOfAbsence.VACATION)
+      .withComment("Test comment");
+  }
+
+  public Absence build() {
+    return new Absence(
+      getId() == null ? null : new AbsenceId(getId()),
+      new EmployeeId(getEmployeeId()),
+      getBegin(),
+      getEnd(),
+      getTypeOfAbsence(),
+      getComment()
+    );
+  }
+}
+
+dieser testbuilder resultiert aus einer klasse, ich möchte jetzt, dass du aus einer neuen testbuilder erstellst für folgende klasse
+Please only output the new code format, and nothing else - no explanations on your part.
+The code you generate should never contain comments, only instructions in the form of code.
+
+[new testbuilder class]
+
+[dependencies]
