@@ -1,0 +1,39 @@
+ich gebe dir gleich code und bitte dich passend zu dem Aggregate Root einen command primary port zu generieren.
+Please only output the new code format, and nothing else - no explanations on your part.
+The code you generate should never contain comments, only instructions in the form of code.
+
+Ein command primary port soll mit folgendem Template gebaut werden
+bitte entferne auch alles kommentare die als template hinweis dienen
+
+@RequiredArgsConstructor
+public class <name des aggregate roots>CommandPrimaryPort {
+
+  private final <name des repositories passend zum aggregate root>writeRepository;
+  //CONDITION: wenn ein lesezugriff benötigt wird
+  private final <name des repositories passend zum aggregate root>readRepository;
+  private final EventPublisher eventPublisher;
+
+  //INFO: hier methoden des aggregate roots aufrufen und verarbeiten
+  public <return aggregate root> beispielMethode(BeispielCommand beispielCommand){
+    //CONDITION: wenn ein lesezugriff benötigt wird
+    <aggregate root> aggregateRoot = <name des repositories passend zum aggregate root>readRepository.findById(beispielCommand.getId());
+    //CONDITION: wenn ein lesezugriff benötigt wird
+    if(aggregateRoot == null){
+      throw new <aggregate root>NotFoundException();
+    }
+    //CONDITION: wenn ein lesezugriff benötigt wird
+    aggregateRoot.beispielMethode(beispielCommand.getBeispielParameter());
+    //CONDITION: wenn ein lesezugriff benötigt wird
+    <name des repositories passend zum aggregate root>writeRepository.save(aggregateRoot);
+    //CONDITION: wenn ein lesezugriff benötigt wird
+    eventPublisher.publishEvent(new <aggregate root>Event(aggregateRoot));
+    //CONDITION: wenn ein lesezugriff benötigt wird
+    return aggregateRoot;
+  }
+}
+
+wichtig ist auch noch, zu jedem use case im primary port muss ein record erstellt werden, dieser record ist ein command und muss alle parameter der methode im aggregateroot enthalten.
+wenn bereits ein datensatz besteht und man macht z.B. eine Anpassung am Aggregate Root dann muss im record auch die id angegeben werden und das read readrepository muss erstmals den
+datensatz selektieren.
+
+[ressources]

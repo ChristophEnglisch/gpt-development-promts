@@ -66,5 +66,45 @@ public class <here name of test prefix>DataJpaTest {
 [testcases]
 
 [dependecies]
+@Repository
+public interface JpaReportEmployeeRepository extends JpaRepository<ReportEmployeeEntity, Long> {
+}
+
 
 [testbuilder if exists]
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@With
+public class TestReportEmployeeBuilder {
+
+  public static Random RANDOM = new Random();
+
+  private Long id;
+  private String firstName;
+  private String lastName;
+  private FederalState regularPlaceOfWork;
+  private int weeklyHoursOfWork;
+  private Collection<DayOfWeek> workingDays;
+
+  public static TestReportEmployeeBuilder withDefaults() {
+    return new TestReportEmployeeBuilder()
+      .withId(RANDOM.nextLong(0, Integer.MAX_VALUE))
+      .withLastName("Mustermann")
+      .withFirstName("Max")
+      .withRegularPlaceOfWork(FederalState.NW)
+      .withWeeklyHoursOfWork(40)
+      .withWorkingDays(WorkingDays.allowedWorkingDays);
+  }
+
+  public ReportEmployee build() {
+    return new ReportEmployee(new EmployeeId(id),
+                              new FirstName(firstName),
+                              new LastName(lastName),
+                              regularPlaceOfWork,
+                              new WeeklyHoursOfWork(weeklyHoursOfWork),
+                              new WorkingDays(workingDays)
+    );
+  }
+
+}

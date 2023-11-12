@@ -23,5 +23,95 @@ TestPublicHolidayBuilder.withDefaults()
 [testcases]
 
 [dependecies]
+@AggregateRoot
+@Getter
+@EqualsAndHashCode(callSuper = false)
+public class ReportEmployee extends Entity {
+  private EmployeeId id;
+  private FirstName firstName;
+  private LastName lastName;
+  private FederalState regularPlaceOfWork;
+  private WeeklyHoursOfWork weeklyHoursOfWork;
+  private WorkingDays workingDays;
+
+  public ReportEmployee(
+    FirstName firstName,
+    LastName lastName,
+    FederalState regularPlaceOfWork,
+    WeeklyHoursOfWork weeklyHoursOfWork,
+    WorkingDays workingDays
+  ) {
+    setFirstName(firstName);
+    setLastName(lastName);
+    setRegularPlaceOfWork(regularPlaceOfWork);
+    setWeeklyHoursOfWork(weeklyHoursOfWork);
+    setWorkingDays(workingDays);
+  }
+
+  public ReportEmployee(
+    EmployeeId id,
+    FirstName firstName,
+    LastName lastName,
+    FederalState regularPlaceOfWork,
+    WeeklyHoursOfWork weeklyHoursOfWork,
+    WorkingDays workingDays
+  ) {
+    setId(id);
+    setFirstName(firstName);
+    setLastName(lastName);
+    setRegularPlaceOfWork(regularPlaceOfWork);
+    setWeeklyHoursOfWork(weeklyHoursOfWork);
+    setWorkingDays(workingDays);
+  }
+
+  public ReportEmployee setId(EmployeeId id) {
+    if (id == null) {
+      throw new IllegalArgumentException("EmployeeId cannot be null");
+    }
+    EmployeeId oldId = this.id;
+    this.id = id;
+    if (oldId == null) {
+      domainEvents.add(
+        ReportEmployeeCreated.of(this));
+    }
+    return this;
+  }
+
+  private void setFirstName(FirstName firstName) {
+    if (firstName == null) {
+      throw new IllegalArgumentException("FirstName cannot be null");
+    }
+    this.firstName = firstName;
+  }
+
+  private void setLastName(LastName lastName) {
+    if (lastName == null) {
+      throw new IllegalArgumentException("LastName cannot be null");
+    }
+    this.lastName = lastName;
+  }
+
+  private void setRegularPlaceOfWork(FederalState regularPlaceOfWork) {
+    if (regularPlaceOfWork == null) {
+      throw new IllegalArgumentException("FederalState cannot be null");
+    }
+    this.regularPlaceOfWork = regularPlaceOfWork;
+  }
+
+  private void setWeeklyHoursOfWork(WeeklyHoursOfWork weeklyHoursOfWork) {
+    if (weeklyHoursOfWork == null) {
+      throw new IllegalArgumentException("WeeklyHoursOfWork cannot be null");
+    }
+    this.weeklyHoursOfWork = weeklyHoursOfWork;
+  }
+
+  private void setWorkingDays(WorkingDays workingDays) {
+    if (workingDays == null) {
+      throw new IllegalArgumentException("WorkingDays cannot be null");
+    }
+    this.workingDays = workingDays;
+  }
+}
+
 
 [testbuilder if exists]
